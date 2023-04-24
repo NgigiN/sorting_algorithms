@@ -1,7 +1,15 @@
 #include "sort.h"
 
 int partitions(int *array, int low, int high, size_t size);
-
+/**
+ * quick_sort_helper - helps sort the array by taking
+ * low and high parameters making using partitions function
+ * easier
+ * @array: pointer to the first element of the array
+ * @low: first index of the sub-array
+ * @high: highest index of the sub-array
+ * @size: size of the big array
+ */
 void quick_sort_helper(int *array, int low, int high, size_t size)
 {
 	if (low < high)
@@ -41,7 +49,7 @@ void quick_sort(int *array, size_t size)
  * @high: index of the high end of the partition
  * @size: size of the array
  *
- * Returns: the index of the pivot element after partitioning
+ * Return: the index of the pivot element after partitioning
  * The array is printed every time the elements are swapped
  */
 int partitions(int *array, int low, int high, size_t size)
@@ -71,5 +79,5 @@ int partitions(int *array, int low, int high, size_t size)
 		array[high] = temp;
 		print_array(array, size);
 	}
-	return i + 1;
+	return (i + 1);
 }
