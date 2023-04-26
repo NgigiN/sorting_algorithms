@@ -45,13 +45,56 @@ void quick_sort(int *array, size_t size)
  * partitions - partitions an array using the Lomuto scheme
  *
  * @array: pointer to the first element of the array
- * @low: index of the low end of the array
- * @high: index of the high end of the partition
+ * @low: index of the low end of the array @high: index of the high end of
+ * the partition
  * @size: size of the array
  *
  * Return: the index of the pivot element after partitioning
  * The array is printed every time the elements are swapped
  */
+int partitions(int *array, int low, int high, size_t size)
+{
+	int pivot = array[high];
+	int i = low - 1, j, temp, count;
+
+	for (j = low; j <= high - 1; j++)
+	{
+		if (array[j] < pivot)
+		{
+			i++;
+			if (i != j)
+			{
+				temp = array[i];
+				array[i] = array[j];
+				array[j] = temp;
+				print_array(array, size);
+			}
+		}
+	}
+
+	/* Check if all elements in the partition are equal to the pivot value*/
+	count = 0;
+	for (j = low; j <= high; j++)
+	{
+		if (array[j] == pivot)
+		{
+			count++;
+		}
+	}
+	if (count == high - low + 1)
+	{
+		return high;
+	}
+
+	/* Swap pivot with element at i+1*/
+	temp = array[i + 1];
+	array[i + 1] = array[high];
+	array[high] = temp;
+	print_array(array, size);
+
+	return (i + 1);
+}
+/*
 int partitions(int *array, int low, int high, size_t size)
 {
 	int pivot = array[high];
@@ -81,3 +124,4 @@ int partitions(int *array, int low, int high, size_t size)
 	}
 	return (i + 1);
 }
+*/
