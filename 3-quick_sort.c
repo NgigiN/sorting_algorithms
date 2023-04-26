@@ -1,5 +1,5 @@
 #include "sort.h"
-
+#include <stdbool.h>
 int partitions(int *array, int low, int high, size_t size);
 /**
  * quick_sort_helper - helps sort the array by taking
@@ -21,6 +21,23 @@ void quick_sort_helper(int *array, int low, int high, size_t size)
 	}
 }
 /**
+ * all_elements_equal - checks if all elements are equal
+ * @array: pointer to first element of array
+ * @size: size of array
+ * Return: true if equal false if not
+ */
+bool all_elements_equal(int *array, size_t size)
+{
+	size_t i;
+
+	for (i = 1; i < size; i++)
+	{
+		if (array[i] != array[0])
+			return false;
+	}
+	return true;
+}
+/**
  * quick_sort - sorts an array of integers in
  * ascending order using quick sort
  *
@@ -38,14 +55,22 @@ void quick_sort(int *array, size_t size)
 	if (array == NULL || size < 2)
 		return;
 
-	quick_sort_helper(array, 0, size - 1, size);
+	if (all_elements_equal(array, size))
+	{
+		return;
+	}
+	else
+	{
+		quick_sort_helper(array, 0, size - 1, size);
+	}
 }
 
 /**
  * partitions - partitions an array using the Lomuto scheme
  *
  * @array: pointer to the first element of the array
- * @low: index of the low end of the array @high: index of the high end of
+ * @low: index of the low end of the array
+ * @high: index of the high end of
  * the partition
  * @size: size of the array
  *
