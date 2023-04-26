@@ -52,10 +52,11 @@ void quick_sort(int *array, size_t size)
  * Return: the index of the pivot element after partitioning
  * The array is printed every time the elements are swapped
  */
+
 int partitions(int *array, int low, int high, size_t size)
 {
 	int pivot = array[high];
-	int i = low - 1, j, temp, count;
+	int i = low - 1, j, temp;
 
 	for (j = low; j <= high - 1; j++)
 	{
@@ -71,26 +72,13 @@ int partitions(int *array, int low, int high, size_t size)
 			}
 		}
 	}
-
-	/* Check if all elements in the partition are equal to the pivot value*/
-	count = 0;
-	for (j = low; j <= high; j++)
+	if (i + 1 != high)
 	{
-		if (array[j] == pivot)
-		{
-			count++;
-		}
-	}
-	if (count == high - low + 1)
-	{
-		return high;
-	}
 
-	/* Swap pivot with element at i+1*/
-	temp = array[i + 1];
-	array[i + 1] = array[high];
-	array[high] = temp;
-	print_array(array, size);
-
+		temp = array[i + 1];
+		array[i + 1] = array[high];
+		array[high] = temp;
+		print_array(array, size);
+	}
 	return (i + 1);
 }
