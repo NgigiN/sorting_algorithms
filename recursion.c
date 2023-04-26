@@ -5,7 +5,7 @@ void bb_sort(int *array, size_t size)
 	size_t i;
 	int temp;
 
-	if(size <= 1)
+	if (size <= 1)
 		return;
 
 	for (i = 0; i < size - 1; i++)
@@ -18,4 +18,4 @@ void bb_sort(int *array, size_t size)
 		}
 	}
 	bb_sort(array, size - 1);
-}	
+}
